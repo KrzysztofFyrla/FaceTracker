@@ -18,7 +18,7 @@ import java.util.Objects;
  * @project FaceTracker
  */
 public class Main {
-    private static final File DATABASE = new File("Database");
+    private static final File DATABASE = new File("Database ");
 
     public static void main(String[] args)
     {
