@@ -120,7 +120,7 @@ public class ImageFrame {
     boolean shouldSave()
     {
         boolean prevState = shouldSave;
-        shouldSave = true;
+        shouldSave = false;
         return prevState;
     }
 
