@@ -3,11 +3,14 @@ package pl.face.tracker;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -37,12 +40,21 @@ public class ImageFrame {
         imagePanel = new ImagePanel();
         isOpen = true;
 
-        frame = new JFrame("Face Tracker");
+        frame = new JFrame("Face Tracker by Krzysztof Fyrla");
         frame.addWindowListener(createWindowListener());
         frame.setLayout(new BorderLayout());
         frame.add("Center", imagePanel);
         frame.add("South", createToolbarPanel());
         frame.setVisible(true);
+
+        try {
+            URL resource = frame.getClass().getResource("/image/Logo.png");
+            BufferedImage image = ImageIO.read(resource);
+            frame.setIconImage(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private WindowListener createWindowListener()
@@ -72,16 +84,11 @@ public class ImageFrame {
     private JPanel createSavePanel()
     {
         JPanel savePanel = new JPanel();
-        savePanel.setBorder(BorderFactory.createLineBorder(Color.red));
+        savePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         txtFileName = new JTextField(20);
         JButton btnSaveFile = new JButton("Zapisz twarz");
         btnSaveFile.addActionListener(actionEvent -> shouldSave = true);
-
-        JPanel namePanel = new JPanel();
-        namePanel.add(new JLabel("Imię: "));
-        namePanel.add(txtFileName);
-        savePanel.add(namePanel, btnSaveFile);
 
         return savePanel;
     }

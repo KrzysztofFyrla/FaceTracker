@@ -78,7 +78,7 @@ public class Main {
             if (shouldSave)
                 saveImage(croppedImage, name);
 
-            Imgproc.putText(image, "ID: " + identifyFace(croppedImage), face.tl(), Font.BOLD, 1.5, color);
+            Imgproc.putText(image, "" + identifyFace(croppedImage), face.tl(), Font.BOLD, 2, color);
             Imgproc.rectangle(image, face.tl(), face.br(), color);
         }
 
@@ -113,7 +113,7 @@ public class Main {
             return faceID.substring(0, faceID.indexOf(delimiter)).trim();
         }
         else
-            return "???";
+            return "";
     }
 
     private static int compareFaces(Mat currentImage, String fileName)
